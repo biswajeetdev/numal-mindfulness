@@ -1,15 +1,6 @@
-// utils/session.ts
+import type { LocalSession } from "@/types/session";
 
-import { ImageSourcePropType } from "react-native";
-
- interface Session {
-  id: number;
-  title: string;
-  description: string;
-  image: ImageSourcePropType;
-}
-
-export const sessions: Session[] = [
+export const sessions: LocalSession[] = [
   {
     id: 1,
     title: "Forest View",

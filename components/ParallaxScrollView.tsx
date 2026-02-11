@@ -1,4 +1,5 @@
 import { sessions } from "@/utils/sessions";
+import { useRouter } from "expo-router";
 import { Image } from "expo-image";
 import { PropsWithChildren } from "react";
 import { StyleSheet, Text, View } from "react-native";
@@ -16,8 +17,16 @@ const HEADER_HEIGHT = 400;
 export default function ParallaxScrollView({
   children,
 }: PropsWithChildren) {
+  const router = useRouter();
   const todaySession =
     sessions[Math.floor(Math.random() * sessions.length)];
+
+  const handleStartSession = () => {
+    router.push({
+      pathname: "/session",
+      params: { sessionId: todaySession.id },
+    });
+  };
 
   // Shared scroll value
   const scrollY = useSharedValue(0);
@@ -68,16 +77,7 @@ export default function ParallaxScrollView({
       </Animated.View>
 
       
-      <View style={styles.headerOverlay}>
-        <Text style={styles.headerSubtitle}>Featured Session</Text>
-        <Text style={styles.headerTitle}>{todaySession.title}</Text>
-        <Text style={styles.headerDescription}>
-          {todaySession.description}
-        </Text>
-        <Button>Start Session</Button>
-      </View>
-
-      {/* 🔹 Scroll Content */}
+      {/* Scroll content first (rendered below overlay) */}
       <Animated.ScrollView
         onScroll={scrollHandler}
         scrollEventThrottle={16}
@@ -86,6 +86,18 @@ export default function ParallaxScrollView({
       >
         {children}
       </Animated.ScrollView>
+
+      {/* Overlay on top so button receives touches */}
+      <View style={styles.headerOverlay}>
+        <View style={styles.headerContent}>
+          <Text style={styles.headerSubtitle}>Featured Session</Text>
+          <Text style={styles.headerTitle}>{todaySession.title}</Text>
+          <Text style={styles.headerDescription}>
+            {todaySession.description}
+          </Text>
+          <Button onPress={handleStartSession}>Start Session</Button>
+        </View>
+      </View>
     </View>
   );
 }
@@ -106,8 +118,12 @@ const styles = StyleSheet.create({
   headerOverlay: {
     position: "absolute",
     top: 0,
+    left: 0,
+    right: 0,
     height: HEADER_HEIGHT,
-    width: "100%",
+  },
+  headerContent: {
+    flex: 1,
     justifyContent: "flex-end",
     alignItems: "center",
     paddingBottom: 32,

@@ -1,3 +1,4 @@
+import { getServerConfig } from "@/utils/config";
 import { ConversationResponse } from "@/utils/types";
 
 export async function GET(request: Request) {
@@ -8,20 +9,14 @@ export async function GET(request: Request) {
     return new Response("Conversation ID is required", { status: 400 });
   }
 
-  if (!process.env.ELEVENLABS_API_KEY) {
-    return new Response("ELEVENLABS_API_KEY is not set", { status: 500 });
-  }
-
-//   if (!process.env.ELEVENLABS_BASE_URL) {
-//     return new Response("ELEVENLABS_BASE_URL is not set", { status: 500 });
-//   }
+  const { elevenLabs } = getServerConfig();
 
   const response = await fetch(
-    `${process.env.ELEVENLABS_BASE_URL}/v1/convai/conversations/${conversationId}`,
+    `${elevenLabs.baseUrl}/v1/convai/conversations/${conversationId}`,
     {
       method: "GET",
       headers: {
-        "xi-api-key": process.env.ELEVENLABS_API_KEY,
+        "xi-api-key": elevenLabs.apiKey,
         "Content-Type": "application/json",
       },
     }

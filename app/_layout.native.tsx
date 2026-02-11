@@ -1,7 +1,8 @@
 import { ClerkProvider, useAuth } from "@clerk/clerk-expo";
 import { tokenCache } from "@clerk/clerk-expo/token-cache";
 import { Stack } from "expo-router";
-import {ElevenLabsProvider} from "@elevenlabs/react-native";
+import { ElevenLabsProvider } from "@elevenlabs/react-native";
+import { config } from "@/utils/config";
 
 
  function RootLayoutWithAuth() {
@@ -43,7 +44,7 @@ import {ElevenLabsProvider} from "@elevenlabs/react-native";
         <ClerkProvider
       
         tokenCache={tokenCache}
-        publishableKey={process.env.EXPO_PUBLIC_CLERK_PUBLISHABLE_KEY}
+        publishableKey={config.clerk.publishableKey}
         >
 
 

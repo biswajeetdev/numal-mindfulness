@@ -66,3 +66,17 @@ The app is built using **Expo + React Native**, integrates **real-time AI voice 
 ```bash
 git clone https://github.com/<your-username>/numal-mindfulness.git
 cd numal-mindfulness
+```
+
+### 2. Environment variables
+Copy `env.example` to `.env` or `.env.local` and fill in your values:
+```bash
+cp env.example .env.local
+```
+See `env.example` for required keys (Clerk, Appwrite, ElevenLabs, API URL, etc.). Never commit secrets—`.env*` files are gitignored.
+
+### 3. Install and run
+```bash
+npm install
+npx expo start
+```

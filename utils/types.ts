@@ -5,10 +5,12 @@ export interface TranscriptEntry{
     message: string;
 }
 
-export interface ConversationMetadata{
-    start_time_unix_secs: number;
-    call_duration_secs: number;
-    cost: number;
+export interface ConversationMetadata {
+  start_time_unix_secs: number;
+  call_duration_secs?: number;
+  cost?: number;
+  termination_reason?: string;
+  error?: { reason?: string; code?: number };
 }
 
 export interface Analysis{
