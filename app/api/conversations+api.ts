@@ -23,13 +23,13 @@ export async function GET(request: Request) {
   );
 
   if (!response.ok) {
-    const errorText = await response.text();
-    return new Response(errorText, { status: response.status });
+    return new Response(
+      JSON.stringify({ error: "Failed to fetch conversation" }),
+      { status: response.status, headers: { "Content-Type": "application/json" } }
+    );
   }
 
   const conversation: ConversationResponse = await response.json();
-
-  console.log("[SERVER] Conversation", conversation);
 
   return new Response(JSON.stringify({ conversation }), {
     status: 200,

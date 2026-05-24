@@ -1,5 +1,13 @@
 # Numal – AI-Guided Mindfulness
 
+![React Native](https://img.shields.io/badge/React_Native-20232A?style=flat&logo=react&logoColor=61DAFB)
+![Expo](https://img.shields.io/badge/Expo-000020?style=flat&logo=expo&logoColor=white)
+![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=flat&logo=typescript&logoColor=white)
+![Clerk](https://img.shields.io/badge/Clerk-6C47FF?style=flat&logo=clerk&logoColor=white)
+![Appwrite](https://img.shields.io/badge/Appwrite-FD366E?style=flat&logo=appwrite&logoColor=white)
+![ElevenLabs](https://img.shields.io/badge/ElevenLabs-000000?style=flat&logoColor=white)
+![LiveKit](https://img.shields.io/badge/LiveKit-1C6EF2?style=flat&logoColor=white)
+
 Numal is a React Native mindfulness application that delivers AI-guided voice meditation sessions with persistent history and session summaries.
 
 The project focuses on building a maintainable, scalable architecture that combines real-time voice AI, secure authentication, and structured session persistence.

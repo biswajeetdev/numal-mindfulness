@@ -50,7 +50,7 @@ export default function SessionScreen() {
       await conversation.startSession({
         agentId: config.agentId,
         dynamicVariables: {
-          user_name: user?.username ?? "Parth",
+          user_name: user?.firstName ?? user?.username ?? "Friend",
           session_title: session.title,
           session_description: session.description,
         },
